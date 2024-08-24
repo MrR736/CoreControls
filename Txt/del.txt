@@ -2,6 +2,7 @@
 cd %core%\CoreUpdates
 del /s /q "%core%"
 rd /s /q "%core%\App"
+rd /s /q "%core%\Data"
 xcopy /s /y "%root%\Update\CoreUpdates-main" "%core%\CoreUpdates"
 xcopy /s /y "%root%\Update\CoreSettings-main" "%core%\CoreSettings"
 timeout /t 3 /nobreak
