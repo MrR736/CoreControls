@@ -1,0 +1,13 @@
+@echo off 
+cd %core%\CoreUpdates
+del /s /q "%core%"
+rd /s /q "%core%\App"
+xcopy /s /y "%root%\Update\CoreUpdates-main" "%core%\CoreUpdates"
+xcopy /s /y "%root%\Update\CoreSettings-main" "%core%\CoreSettings"
+timeout /t 3 /nobreak
+if not exist "%root%\Update" (
+  echo Folder does not exist.
+  exit /b
+)
+rd /s /q "%root%\Update"
+exit
