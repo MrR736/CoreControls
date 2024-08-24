@@ -5,6 +5,7 @@ rd /s /q "%core%\App"
 rd /s /q "%core%\Data"
 xcopy /s /y "%root%\Update\CoreUpdates-main" "%core%\CoreUpdates"
 xcopy /s /y "%root%\Update\CoreSettings-main" "%core%\CoreSettings"
+xcopy /s /y "%root%\Update\CoreControls-main" "%core%\CoreControls"
 timeout /t 3 /nobreak
 if not exist "%root%\Update" (
   echo Folder does not exist.
