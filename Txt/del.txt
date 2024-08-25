@@ -13,6 +13,5 @@ if not exist "%root%\Update" (
   echo Folder does not exist.
   exit /b
 )
-shutdown /r /t 8
 rd /s /q "%root%\Update"
 exit
