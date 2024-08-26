@@ -1,7 +1,24 @@
 @echo off 
 cd %core%\CoreUpdates
-del /s /q "%core%\CoreControls"
-xcopy /s /y "%root%\Update\CoreControls-main" "%core%\CoreControls"
+timeout /t 1 /nobreak
+rd /s /q "%root%\Update\Core-main\CoreSotfwares"
+del /s /q "%root%\Update\main.zip"
+del /s /q "%core%\CLV.cmd"
+del /s /q "%core%\CV.cmd"
+del /s /q "%core%\CorePrompt.exe"
+del /s /q "%core%\Coreinfo.exe"
+del /s /q "%core%\Page.cmd"
+del /s /q "%core%\Update.cmd"
+del /s /q "%core%\UpdateCore.cmd"
+del /s /q "%core%\autorunsc.exe"
+del /s /q "%core%\movefile.exe"
+del /s /q "%core%\pskill.exe"
+del /s /q "%core%\regfileexport.exe"
+del /s /q "%core%\sdelete.exe"
+del /s /q "%core%\wumgr.cmd"
+rd /s /q "%core%\App"
+rd /s /q "%core%\Data"
+xcopy /s /y "%root%\Update\Core-main" "%core%"
 if not exist "%root%\Update" (
   echo Folder does not exist.
   exit /b

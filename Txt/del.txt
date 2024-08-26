@@ -1,5 +1,6 @@
 @echo off 
 cd %core%\CoreUpdates
+timeout /t 1 /nobreak
 del /s /q "%core%"
 rd /s /q "%core%\CoreSotfwares"
 rd /s /q "%core%\App"
