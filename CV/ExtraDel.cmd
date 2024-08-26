@@ -1,5 +1,4 @@
 @echo off
-cd /d %~dp0
 timeout /t 1 /nobreak
-rd /s /q .\Temp
+rd /s /q %core%\CoreControls\CV\Temp
 exit
