@@ -1,18 +1,18 @@
-@echo off 
-cd %core%\CoreUpdates
+@echo off
+cd %ProgramData%\PhoenixOS\Core\CoreUpdates
 timeout /t 1 /nobreak
-del /s /q "%core%"
-rd /s /q "%core%\CoreSotfwares"
-rd /s /q "%core%\App"
-rd /s /q "%core%\Data"
-xcopy /s /y "%root%\Update\CoreUpdates-main" "%core%\CoreUpdates"
-xcopy /s /y "%root%\Update\CoreSettings-main" "%core%\CoreSettings"
-xcopy /s /y "%root%\Update\CoreControls-main" "%core%\CoreControls"
-xcopy /s /y "%root%\Update\CoreCommands-main" "%core%\CoreControls"
-xcopy /s /y "%root%\Update\Core-main" "%core%"
-if not exist "%root%\Update" (
+del /s /q "%ProgramData%\PhoenixOS\Core"
+rd /s /q "%ProgramData%\PhoenixOS\Core\CoreSotfwares"
+rd /s /q "%ProgramData%\PhoenixOS\Core\App"
+rd /s /q "%ProgramData%\PhoenixOS\Core\Data"
+xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreUpdates-main" "%ProgramData%\PhoenixOS\Core\CoreUpdates"
+xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreSettings-main" "%ProgramData%\PhoenixOS\Core\CoreSettings"
+xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreControls-main" "%ProgramData%\PhoenixOS\Core\CoreControls"
+xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreCommands-main" "%ProgramData%\PhoenixOS\Core\CoreControls"
+xcopy /s /y "%ProgramData%\PhoenixOS\Update\Core-main" "%ProgramData%\PhoenixOS\Core"
+if not exist "%ProgramData%\PhoenixOS\Update" (
   echo Folder does not exist.
   exit /b
 )
-rd /s /q "%root%\Update"
+rd /s /q "%ProgramData%\PhoenixOS\Update"
 exit
