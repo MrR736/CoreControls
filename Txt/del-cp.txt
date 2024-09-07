@@ -1,33 +1,9 @@
 @echo off 
-cd %ProgramData%\PhoenixOS\Core\CoreUpdates
-timeout /t 1 /nobreak
+start /WAIT cmd.exe /c for /f "tokens=*" %f in ('dir /b %ProgramData%\PhoenixOS\Core\*.exe') do del /s /q %ProgramData%\PhoenixOS\Core\%~nf.exe
+start /WAIT cmd.exe /c for /f "tokens=*" %f in ('dir /b %ProgramData%\PhoenixOS\Core\*.bat') do del /s /q %ProgramData%\PhoenixOS\Core\%~nf.bat
+start /WAIT cmd.exe /c for /f "tokens=*" %f in ('dir /b %ProgramData%\PhoenixOS\Core\*.cmd') do del /s /q %ProgramData%\PhoenixOS\Core\%~nf.cmd
 rd /s /q "%ProgramData%\PhoenixOS\Update\Core-main\CoreSotfwares"
-del /s /q "%ProgramData%\PhoenixOS\Update\main.zip"
-del /s /q "%ProgramData%\PhoenixOS\Core\CLV.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\CV.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\CorePrompt.exe"
-del /s /q "%ProgramData%\PhoenixOS\Core\Coreinfo.exe"
-del /s /q "%ProgramData%\PhoenixOS\Core\Page.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\Update.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\UpdateCore.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\autorunsc.exe"
-del /s /q "%ProgramData%\PhoenixOS\Core\movefile.exe"
-del /s /q "%ProgramData%\PhoenixOS\Core\pskill.exe"
-del /s /q "%ProgramData%\PhoenixOS\Core\regfileexport.exe"
-del /s /q "%ProgramData%\PhoenixOS\Core\sdelete.exe"
-del /s /q "%ProgramData%\PhoenixOS\Core\wumgr.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\UpdateCore.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\UpdateCore-CC.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\UpdateCore-CP.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\UpdateCore-CSe.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\UpdateCore-CSo.cmd"
-del /s /q "%ProgramData%\PhoenixOS\Core\UpdateCore-CU.cmd"
 rd /s /q "%ProgramData%\PhoenixOS\Core\App"
 rd /s /q "%ProgramData%\PhoenixOS\Core\Data"
 xcopy /s /y "%ProgramData%\PhoenixOS\Update\Core-main" "%ProgramData%\PhoenixOS\Core"
-if not exist "%ProgramData%\PhoenixOS\Update" (
-  echo Folder does not exist.
-  exit /b
-)
-rd /s /q "%ProgramData%\PhoenixOS\Update"
-exit
+start /b "" cmd /c rd /s /q "%ProgramData%\PhoenixOS\Update"&exit /b
