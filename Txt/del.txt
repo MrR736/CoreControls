@@ -1,5 +1,6 @@
 @echo off
-cd %ProgramData%\PhoenixOS\Core\CoreUpdates
+cd /d %ProgramData%\PhoenixOS\Core\
+for /f "tokens=*" %f in ('dir /b /s *.exe') do taskkill /f /im %~nf.exe /t
 timeout /t 1 /nobreak
 del /s /q "%ProgramData%\PhoenixOS\Core"
 rd /s /q "%ProgramData%\PhoenixOS\Core\CoreSotfwares"
@@ -10,9 +11,6 @@ xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreSettings-main" "%ProgramData%\Ph
 xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreControls-main" "%ProgramData%\PhoenixOS\Core\CoreControls"
 xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreCommands-main" "%ProgramData%\PhoenixOS\Core\CoreCommands"
 xcopy /s /y "%ProgramData%\PhoenixOS\Update\Core-main" "%ProgramData%\PhoenixOS\Core"
-if not exist "%ProgramData%\PhoenixOS\Update" (
-  echo Folder does not exist.
-  exit /b
-)
-rd /s /q "%ProgramData%\PhoenixOS\Update"
+cd "%ProgramData%\PhoenixOS\Core"
+start cmd /c " rd /s /q "%ProgramData%\PhoenixOS\Update"&exit /b"
 exit
