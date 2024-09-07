@@ -6,4 +6,6 @@ rd /s /q "%ProgramData%\PhoenixOS\Update\Core-main\CoreSotfwares"
 rd /s /q "%ProgramData%\PhoenixOS\Core\App"
 rd /s /q "%ProgramData%\PhoenixOS\Core\Data"
 xcopy /s /y "%ProgramData%\PhoenixOS\Update\Core-main" "%ProgramData%\PhoenixOS\Core"
-start /b "" cmd /c rd /s /q "%ProgramData%\PhoenixOS\Update"&exit /b
+cd "%ProgramData%\PhoenixOS\Core"
+start cmd /c " rd /s /q "%ProgramData%\PhoenixOS\Update"&exit /b"
+exit
