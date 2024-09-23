@@ -10,6 +10,4 @@ echo %progress%/%total_steps% [%progress%]
 tasklist /v /fo csv | findstr /i "cmd" >nul
 set /a progress+=1
 if %progress% LSS %total_steps% goto start_progress
-@echo on
-cd %ProgramData%\PhoenixOS\Core Updates\Controls
-cls
+exit
