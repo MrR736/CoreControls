@@ -32,15 +32,23 @@ REM Internet connection succeeded
 :successful
 title UpdateCore /CCo
 color FA
-cd "%ProgramData%\PhoenixOS"
-mkdir Update
-cd "%ProgramData%\PhoenixOS\Update"
-wget https://github.com/MrR736/CoreCommands/archive/refs/heads/main.zip
-7za x main.zip -o"%ProgramData%\PhoenixOS\Update"
-del /s /q "%ProgramData%\PhoenixOS\Update\main.zip"
-del /s /q "%ProgramData%\PhoenixOS\Core\CoreCommands"
-xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreCommands-main" "%ProgramData%\PhoenixOS\Core\CoreCommands"
-rd /s /q "%ProgramData%\PhoenixOS\Update"
+wget -q -O"%temp%\main.zip" https://github.com/MrR736/CoreCommands/archive/refs/heads/main.zip
+7z x "%temp%\main.zip" -o"%temp%\Update" > NUL
+del /s /q "%temp%\main.zip"
+setlocal enabledelayedexpansion
+
+if not exist CorePath (
+    echo CorePath file not found!
+    exit /b
+)
+
+for /f "delims=" %%i in (CorePath) do (
+    echo Processing directory: %%i
+    xcopy /s /y /e "%temp%\Update\CoreCommands-main" "%%~i\CoreCommands"
+)
+
+endlocal
+rd /s /q "%temp%\Update"
 exit
 
 REM Internet connection failed
@@ -58,7 +66,7 @@ if /I "%c%" EQU "y" goto :y
 if /I "%c%" EQU "N" goto :n
 if /I "%c%" EQU "n" goto :n
 ECHO Indecisive.
-pause
+pause > NUL
 goto failed
 
 :y

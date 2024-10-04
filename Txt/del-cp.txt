@@ -1,11 +1,9 @@
-@echo off 
-start /WAIT cmd.exe /c for /f "tokens=*" %f in ('dir /b %ProgramData%\PhoenixOS\Core\*.exe') do del /s /q %ProgramData%\PhoenixOS\Core\%~nf.exe
-start /WAIT cmd.exe /c for /f "tokens=*" %f in ('dir /b %ProgramData%\PhoenixOS\Core\*.bat') do del /s /q %ProgramData%\PhoenixOS\Core\%~nf.bat
-start /WAIT cmd.exe /c for /f "tokens=*" %f in ('dir /b %ProgramData%\PhoenixOS\Core\*.cmd') do del /s /q %ProgramData%\PhoenixOS\Core\%~nf.cmd
-rd /s /q "%ProgramData%\PhoenixOS\Update\Core-main\CoreSotfwares"
-rd /s /q "%ProgramData%\PhoenixOS\Core\App"
-rd /s /q "%ProgramData%\PhoenixOS\Core\Data"
-xcopy /s /y "%ProgramData%\PhoenixOS\Update\Core-main" "%ProgramData%\PhoenixOS\Core"
-cd "%ProgramData%\PhoenixOS\Core"
-start cmd /c " rd /s /q "%ProgramData%\PhoenixOS\Update"&exit /b"
+@echo off
+set /p cp=<CorePath
+start /W cmd.exe /c for /f "tokens=*" %f in ('dir /b %cp%\*.bat') do del /q %cp%\%~nf.bat
+start /W cmd.exe /c for /f "tokens=*" %f in ('dir /b %cp%\*.cmd') do del /q %cp%\%~nf.cmd
+rd /s /q "%temp%\Update\Core-main\CoreSotfwares"
+xcopy /s /y "%temp%\Update\Core-main" "%cp%"
+cd %cp%
+start cmd /c rd /s /q %temp%\Update
 exit

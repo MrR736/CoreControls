@@ -1,16 +1,14 @@
 @echo off
-cd /d %ProgramData%\PhoenixOS\Core\
-for /f "tokens=*" %f in ('dir /b /s *.exe') do taskkill /f /im %~nf.exe /t
-timeout /t 1 /nobreak
-del /s /q "%ProgramData%\PhoenixOS\Core"
-rd /s /q "%ProgramData%\PhoenixOS\Core\CoreSotfwares"
-rd /s /q "%ProgramData%\PhoenixOS\Core\App"
-rd /s /q "%ProgramData%\PhoenixOS\Core\Data"
-xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreUpdates-main" "%ProgramData%\PhoenixOS\Core\CoreUpdates"
-xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreSettings-main" "%ProgramData%\PhoenixOS\Core\CoreSettings"
-xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreControls-main" "%ProgramData%\PhoenixOS\Core\CoreControls"
-xcopy /s /y "%ProgramData%\PhoenixOS\Update\CoreCommands-main" "%ProgramData%\PhoenixOS\Core\CoreCommands"
-xcopy /s /y "%ProgramData%\PhoenixOS\Update\Core-main" "%ProgramData%\PhoenixOS\Core"
-cd "%ProgramData%\PhoenixOS\Core"
-start cmd /c " rd /s /q "%ProgramData%\PhoenixOS\Update"&exit /b"
+set /p cp=<CorePath
+cd %temp%
+for /f "tokens=*" %f in ('dir /b /s %cp%\*.exe') do taskkill /f /im %~nf.exe /t
+timeout /t 2 /nobreak
+rd /s /q "%cp%\CoreSoftwares"
+xcopy /s /y "%temp%\Update\CoreUpdates-main" "%cp%\CoreUpdates"
+xcopy /s /y "%temp%\Update\CoreSettings-main" "%cp%\CoreSettings"
+xcopy /s /y "%temp%\Update\CoreControls-main" "%cp%\CoreControls"
+xcopy /s /y "%temp%\Update\CoreCommands-main" "%cp%\CoreCommands"
+xcopy /s /y "%temp%\Update\Core-main" "%cp%"
+start /w /b cmd /c call "%cp%\CoreSoftwares\Setup.cmd"
+start cmd /c rd /s /q %temp%\Update
 exit
