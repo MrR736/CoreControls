@@ -1,9 +1,10 @@
 @echo off
+cd /d %~dp0
 set /p cp=<CorePath
 cd %temp%
-for /f "tokens=*" %f in ('dir /b /s %cp%\*.exe') do taskkill /f /im %~nf.exe /t
+start /w cmd /c for /f "tokens=*" %f in ('dir /b /s %cp%\*.exe') do taskkill /f /im %~nf.exe /t
 timeout /t 2 /nobreak
-rd /s /q "%cp%\CoreSoftwares"
+del /q "%cp%"
 xcopy /s /y "%temp%\Update\CoreUpdates-main" "%cp%\CoreUpdates"
 xcopy /s /y "%temp%\Update\CoreSettings-main" "%cp%\CoreSettings"
 xcopy /s /y "%temp%\Update\CoreControls-main" "%cp%\CoreControls"
